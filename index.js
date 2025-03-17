@@ -40,6 +40,7 @@ function logout() {
 
     // Reload the page
     window.location.reload(); 
+    window.scrollTo(0, 0);
 }
 
 // Smooth scroll
@@ -51,6 +52,7 @@ function scrollToSection(sectionId) {
 window.onload = function () {
     document.getElementById('navbar').style.display = 'none';
     document.getElementById('content').style.display = 'none';
+    
 };
 
 // Function to toggle FAQ answers
