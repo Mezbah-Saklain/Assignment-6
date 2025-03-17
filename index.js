@@ -39,7 +39,7 @@ function logout() {
     document.getElementById('loginCode').value = '';
 
     // Reload the page
-    window.location.reload();  // This reloads the entire page
+    window.location.reload(); 
 }
 
 // Smooth scroll

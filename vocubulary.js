@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    
+
     const lessonButtonsContainer = document.getElementById("lesson-buttons");
     const wordCardsContainer = document.getElementById("word-cards-container");
     const noWordsMessage = document.getElementById("no-words-message");
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
             lessons.forEach((lesson, index) => {
                 const button = document.createElement("button");
                 button.classList.add("lesson-btn", "text-indigo-700", "border", "border-indigo-700", "px-4", "py-2", "rounded-md", "hover:bg-indigo-700", "hover:text-white");
-                button.innerHTML = `Lesson-${index + 1}`;
+                button.innerHTML = `<i class="fas fa-book-open mr-2"></i> Lesson-${index + 1}`;
                 button.dataset.levelId = index + 1;
                 button.addEventListener("click", () => loadWords(index + 1, button));
                 lessonButtonsContainer.appendChild(button);
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 wordCardsContainer.classList.remove("hidden");
                 wordCardsContainer.classList.add("grid", "grid-cols-3", "gap-6", "border-8", "border-gray-300", "rounded-md");
                 words.slice(0, 6).forEach(word => {
-                    const banglaMeaning = word.meaning || "অজানা";  
+                    const banglaMeaning = word.meaning || "অর্থ নেই";  
                     const pronunciation = word.pronunciation || "অজানা"; 
                     const sentence = word.sentence || "No sentence available"; 
                     const card = document.createElement("div");
