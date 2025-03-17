@@ -1,0 +1,149 @@
+/* NAVBAR */
+#navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem 3rem;
+}
+
+/* HERO SECTION */
+#hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 5%;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+#hero input {
+    width: 75%;
+    background-color: #fff;
+    border: 1px solid #e2e8f0;
+    padding: 10px;
+    margin-bottom: 1rem;
+}
+
+#hero button {
+    width: auto;
+    padding: 12px 30px;
+    background-color: #422ad5;
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+}
+
+/* FOOTER */
+#footer {
+    background-color: #f8fafc;
+    padding: 2rem 5%;
+    width: 100%;
+    margin-top: 2rem;
+    position: relative;
+}
+
+/* CONTENT */
+
+/* FAQ */
+.faq-answer-wrapper {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease-out, opacity 0.3s ease-in-out;
+}
+
+.faq-item.active .faq-answer-wrapper {
+    opacity: 1;
+}
+
+.toggle-icon {
+    transition: transform 0.3s ease-out;
+}
+
+.faq-item.active .toggle-icon {
+    transform: rotate(180deg);
+}
+
+/* LESSON */
+#lesson-buttons button {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    color: #4f46e5;
+    border: 2px solid #4f46e5;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s, color 0.3s;
+}
+
+#lesson-buttons button:hover {
+    background-color: #4f46e5;
+    color: white;
+    transform: scale(1.05);
+}
+
+#lesson-buttons button.active {
+    background-color: #4f46e5;
+    color: white;
+}
+
+#lesson-buttons button .icon {
+    margin-right: 8px;
+    font-size: 20px;
+}
+
+/* Word Cards */
+#word-cards .card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    width: 220px;
+    text-align: center;
+}
+
+#word-cards .card:hover {
+    background-color: #f0f0f0;
+}
+
+#default-message {
+    padding: 28px;
+    border-radius: 8px;
+    border: 2px dashed black;
+    background-color: rgb(242, 242, 242);
+}
+
+/* Spinner Styles */
+#loading-spinner {
+    display: none;
+    /* Initially hide the spinner */
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+.spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

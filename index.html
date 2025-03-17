@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Janala</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome CDN for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Link to custom CSS file -->
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body class="font-poppins bg-gray-100">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="bg-white shadow-lg mx-auto flex items-center justify-between p-4 px-14 ">
+        <div class="flex items-center">
+            <span class="text-xl font-semibold text-indigo-700">English </span>
+            <img src="./assets/logo.png" alt="English Icon" class="w-8 h-8 ">
+            <span class="text-xl font-semibold text-indigo-700">জানালা</span>
+        </div>
+        <div class="space-x-4">
+            <button
+                class="text-indigo-700 border border-indigo-700 px-4 py-2 rounded-md hover:bg-indigo-700 hover:text-white"
+                onclick="scrollToSection('faq')">FAQ</button>
+            <button
+                class="text-indigo-700 border border-indigo-700 px-4 py-2 rounded-md hover:bg-indigo-700 hover:text-white"
+                onclick="scrollToSection('vocabulary')">Learn</button>
+            <button
+                class="text-indigo-700 border border-indigo-700 px-4 py-2 rounded-md hover:bg-indigo-700 hover:text-white"
+                onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Login Section) -->
+    <section id="hero" class="flex items-center justify-between p-8 h-screen">
+        <div class="w-1/2 text-left">
+            <h1 class="text-4xl font-bold "><span class="text-blue-400">English</span> is Easy</h1>
+            <p class="text-lg text-gray-500 my-4">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা
+                আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে নিয়ে যাবে অন্য একটি Level এ</p>
+            <input id="username" type="text" placeholder="Enter your name"
+                class="px-4 py-2 border rounded-md w-full mb-4">
+            <input id="loginCode" type="password" placeholder="Enter login code"
+                class="px-4 py-2 border rounded-md w-full mb-4">
+            <br>
+            <button id="getStartedBtn" class="bg-indigo-700 text-white px-6 py-2 rounded-md w-full"
+                onclick="login()">Get Started</button>
+        </div>
+        <div class="w-1/2">
+            <img src="./assets/hero-student.png" alt="Image" class="w-full h-full object-cover">
+        </div>
+    </section>
+
+
+    <!-- Other Sections (Initially hidden) -->
+    <div id="content" class="Hidden"> <!-- Initially hidden -->
+
+        <!-- Learn Section -->
+        <section id="vocabulary" class="py-8 mt-44">
+            <h2 class="text-center text-3xl font-bold mb-6">
+                <span class="text-blue-400">Let's</span> Learn Vocabularies
+            </h2>
+
+            <div id="lesson-buttons-container" class="mb-6">
+                <div id="lesson-buttons" class="flex justify-center space-x-8 mb-6">
+                    <!-- Lesson buttons will be injected here -->
+                </div>
+
+                <div id="default-message"
+                    class="max-w-4xl mx-auto text-center text-lg text-gray-700 mb-6 border-2 border-black p-4 rounded-md w-auto">
+                    <h3 class="font-semibold">আপনি এখনো কোন Lesson Select করেননি</h3>
+                    <p>একটি Lesson Select করুন।</p>
+                </div>
+
+                <div id="no-words-message"
+                    class="hidden max-w-5xl text-center text-lg bg-gray-200 text-gray-800 mb-6 border-2 p-4 rounded-md w-auto mx-auto">
+                    <div class="flex items-center justify-center space-x-4">
+                        <img src="assets/alert-error.png" alt="error icon" class=""> <!-- Error icon -->
+                    </div>
+                    <h3 class="font-semibold">এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।</h3>
+                    <p>নেক্সট Lesson এ যান</p>
+                </div>
+            </div>
+
+            <div id="loading-spinner" class="hidden text-center mb-6">
+                <div class="spinner"></div>
+            </div>
+
+            <!-- Display Words of Selected Lesson -->
+            <div id="word-cards-container"
+                class="hidden max-w-5xl mx-auto border-2 border-gray-400 p-4 rounded-lg bg-slate-200">
+                <div id="word-cards" class="grid grid-cols-3 gap-6">
+                    <!-- Words will be dynamically generated here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-8 px-4 max-w-3xl mx-auto">
+            <h2 class="text-center text-3xl font-bold mb-6"><span class="text-blue-400">Frequently</span> Asked
+                Questions</h2>
+            <div class="space-y-4">
+                <!-- FAQ Items -->
+                <div class="faq-item bg-white p-4 shadow-md rounded-md">
+                    <div class="flex justify-between items-center cursor-pointer" onclick="toggleFAQ(this)">
+                        <h3 class="text-black font-semibold">How can I start learning English on this website?</h3>
+                        <span class="toggle-icon text-xl">+</span>
+                    </div>
+                    <div class="faq-answer-wrapper">
+                        <p class="faq-answer text-gray-600 mt-2">
+                            You can start learning by exploring our interactive lessons and vocabulary-building
+                            exercises.
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item bg-white p-4 shadow-md rounded-md">
+                    <div class="flex justify-between items-center cursor-pointer" onclick="toggleFAQ(this)">
+                        <h3 class="text-black font-semibold">Is this website free to use?</h3>
+                        <span class="toggle-icon text-xl">+</span>
+                    </div>
+                    <div class="faq-answer-wrapper">
+                        <p class="faq-answer text-gray-600 mt-2">
+                            Yes! All our lessons and features are completely free for users.
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item bg-white p-4 shadow-md rounded-md">
+                    <div class="flex justify-between items-center cursor-pointer" onclick="toggleFAQ(this)">
+                        <h3 class="text-black font-semibold">Do I need to create an account?</h3>
+                        <span class="toggle-icon text-xl">+</span>
+                    </div>
+                    <div class="faq-answer-wrapper">
+                        <p class="faq-answer text-gray-600 mt-2">
+                            No, you can start learning without an account. However, signing up lets you track progress.
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item bg-white p-4 shadow-md rounded-md">
+                    <div class="flex justify-between items-center cursor-pointer" onclick="toggleFAQ(this)">
+                        <h3 class="text-black font-semibold">How can I build my English vocabulary?</h3>
+                        <span class="toggle-icon text-xl">+</span>
+                    </div>
+                    <div class="faq-answer-wrapper">
+                        <p class="faq-answer text-gray-600 mt-2">
+                            Use our daily word lists, flashcards, and quizzes to expand your vocabulary.
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item bg-white p-4 shadow-md rounded-md">
+                    <div class="flex justify-between items-center cursor-pointer" onclick="toggleFAQ(this)">
+                        <h3 class="text-black font-semibold">Do you offer certificates for completed courses?</h3>
+                        <span class="toggle-icon text-xl">+</span>
+                    </div>
+                    <div class="faq-answer-wrapper">
+                        <p class="faq-answer text-gray-600 mt-2">
+                            No, we focus on learning rather than certification, but we offer progress tracking.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+
+
+
+
+    <!-- Footer -->
+    <footer id="footer" class="bg-white py-4 mt-8">
+        <div class=" mx-auto flex justify-between items-center">
+            <div>
+                <div class="flex items-center">
+                    <p class="text-xl font-semibold text-indigo-700">English</p>
+                    <img src="./assets/logo.png" alt="English Icon" class="w-8 h-8">
+                    <p class="text-xl font-semibold text-indigo-700">জানালা</p>
+                </div>
+                <p class="text-gray-700 my-2">ইংরেজি শিখুন সহজে</p>
+                <div class="text-gray-700">
+                    <p>Providing ED-Tech Applications since 2025</p>
+                </div>
+            </div>
+
+            <div>
+                <span class="text-gray-700">Follow us</span>
+                <!-- Social Icons -->
+                <div class="flex space-x-4">
+                    <a href="#" target="_blank"><img src="./assets/fb-thumb.png" class="w-6 h-6"></a>
+                    <a href="#" target="_blank"><img src="./assets/github-thumb.png" class="w-6 h-6"></a>
+                    <a href="#" target="_blank"><img src="./assets/youtube-thumb.png" class="w-6 h-6"></a>
+                    <a href="#" target="_blank"><img src="./assets/instagram-thumb.png" class="w-6 h-6"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="index.js"></script>
+    <script src="vocubulary.js"></script>
+</body>
+
+</html>
