@@ -28,20 +28,29 @@
     <!-- Navbar -->
     <nav id="navbar" class="bg-white shadow-lg mx-auto flex items-center justify-between p-4 px-14 ">
         <div class="flex items-center">
-            <span class="text-xl font-semibold text-indigo-700">English </span>
+            <span class="text-xl font-semibold text-slate-800">English </span>
             <img src="./assets/logo.png" alt="English Icon" class="w-8 h-8 ">
-            <span class="text-xl font-semibold text-indigo-700">জানালা</span>
+            <span class="text-xl font-semibold text-slate-700">জানালা</span>
         </div>
         <div class="space-x-4">
             <button
                 class="text-indigo-700 border border-indigo-700 px-4 py-2 rounded-md hover:bg-indigo-700 hover:text-white"
-                onclick="scrollToSection('faq')">FAQ</button>
+                onclick="scrollToSection('faq')">
+                <i class="fas fa-question-circle mr-2"></i>
+                FAQ
+            </button>
             <button
                 class="text-indigo-700 border border-indigo-700 px-4 py-2 rounded-md hover:bg-indigo-700 hover:text-white"
-                onclick="scrollToSection('vocabulary')">Learn</button>
+                onclick="scrollToSection('vocabulary')">
+                <i class="fas fa-book mr-2"></i>
+                Learn
+            </button>
             <button
                 class="text-indigo-700 border border-indigo-700 px-4 py-2 rounded-md hover:bg-indigo-700 hover:text-white"
-                onclick="logout()">Logout</button>
+                onclick="logout()">
+                <i class="fas fa-sign-out-alt mr-2"></i>
+                Logout
+            </button>
         </div>
     </nav>
 
